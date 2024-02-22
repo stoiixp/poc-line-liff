@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The title</title>
 </head>
+
 <body>
-    Hola Halo
+    <img id="pictureUrl" />
+    <p id="userId"><b>User Id:</b> </p>
+    <p id="displayName"><b>DisplayName:</b> </p>
+    <p id="statusMessage"><b>StatusMessage:</b> </p>
+    <p id="decodeIDToken"><b>Email:</b> </p>
+    <button id="btnLogOut" onclick="logOut()">Log Out</button>
+    
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <script>
+        async function getUserProfile() {
+            const profile = await liff.getProfile();
+            document.getElementById("pictureUrl").src = profile.pictureUrl;
+            document.getElementById("userId").append(profile.userId);
+            document.getElementById("displayName").append(profile.displayName);
+            document.getElementById("statusMessage").append(profile.statusMessage);
+            document.getElementById("decodeIDToken").append(liff.getDecodeedIDToken().email);
+        }
+
+        async function main() {
+            await liff.init({liffId: '1234567890-AbcdEfgh', withLoginOnExternalBrowser: true});
+
+            if (liff.isLoggedIn()){
+                getUserProfile();
+            }
+        }
+
+        main();
+    </script>
 </body>
+
 </html>
