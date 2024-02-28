@@ -210,14 +210,15 @@ const liffGetUserProfile = async () => {
 
 const liffInit = async (liff_id) => {
     let user_uuid = null;
-    await liff.init({liffId: liff_id, withLoginOnExternalBrowser: true});
+    await liff.init({liffId: liff_id});
+
     if (liff.isLoggedIn()){
         user_uuid = await liffGetUserProfile();
     } else {
-        liff.login();
-    }
+        const destinationUrl = window.location.href;
 
-    console.log(user_uuid);
+        liff.login({ redirectUri: destinationUrl});
+    }
 
     return user_uuid;
 }
