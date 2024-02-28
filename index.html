@@ -7,35 +7,16 @@
 </head>
 
 <body>
-    <img id="pictureUrl" />
-    <p id="userId"><b>User Id:</b> </p>
-    <p id="displayName"><b>DisplayName:</b> </p>
-    <p id="statusMessage"><b>StatusMessage:</b> </p>
-    <p id="decodeIDToken"><b>Email:</b> </p>
-    <button id="btnLogOut" onclick="logOut()">Log Out</button>
-    
-    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <div id="lead-db-form"></div>
+
+    <script src="./script.js"></script>
     <script>
-        async function getUserProfile() {
-            const profile = await liff.getProfile();
-            document.getElementById("pictureUrl").src = profile.pictureUrl;
-            document.getElementById("userId").append(profile.userId);
-            document.getElementById("displayName").append(profile.displayName);
-            document.getElementById("statusMessage").append(profile.statusMessage);
-            document.getElementById("decodeIDToken").append(liff.getDecodeedIDToken().email);
-        }
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const form_id = urlParams.get('formid');
+        const liff_id = "2003733442-2BjanRjR";
 
-        async function main() {
-            await liff.init({liffId: '2003733442-2BjanRjR', withLoginOnExternalBrowser: true});
-
-            if (liff.isLoggedIn()){
-                getUserProfile();
-            } else {
-                liff.login();
-            }
-        }
-
-        main();
+        leaddb.init(form_id, liff_id);
     </script>
 </body>
 

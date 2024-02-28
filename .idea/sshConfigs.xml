@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="line.iigdata.com" id="5a1fd700-ce36-481e-9d96-6936a9a32804" keyPath="C:\Users\stwor\.ssh\id_rsa" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>
